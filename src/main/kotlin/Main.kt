@@ -10,17 +10,7 @@ fun main() {
     println(HERO_NAME)
     println(playerLevel)
 
-    val hasBefriendedBarbarians = true
-        //подружился с варварами
-    val hasAngeredBarbarians = false
-        //разозлил варваров
-    val playerClass = "paladin"
-        //Класс игрока
-    val quest: String = obtainQuest(playerLevel, hasAngeredBarbarians,
-        hasBefriendedBarbarians, playerClass)
-    println("The hero approaches the bounty board. It reads:")
-    //«Герой приближается к доске с наградами. На ней написано:»
-    println(quest)
+    readBountyBoard()
 
     println("Time passes...")
     //"Время проходит..."
@@ -29,20 +19,24 @@ fun main() {
 
     playerLevel +=1
     println(playerLevel)
+    readBountyBoard()
     }
 
-//
-private fun readBountyBoard(){
 
+
+private fun readBountyBoard(){
+        //функция чтения доски объявлений
+    println("The hero approaches the bounty board. It reads:")
+    //«Герой приближается к доске с наградами. На ней написано:»
+    println(obtainQuest(playerLevel))
 }
 
 private fun obtainQuest(
     playerLevel: Int,
-    hasAngeredBarbarians: Boolean,
-    hasBefriendedBarbarians: Boolean,
-    playerClass: String
-): String {
-    val quest: String = when (playerLevel) {
+    playerClass: String = "paladin",
+    hasBefriendedBarbarians: Boolean = true,
+    hasAngeredBarbarians: Boolean = false
+) : String = when(playerLevel) {
         //квест
         1 -> "Meet Mr. Bubbles in the land of soft things."
         //«Познакомьтесь с мистером Бабблсом в стране мягких вещей».
@@ -70,5 +64,3 @@ private fun obtainQuest(
         else -> "There are no quests right now."
         //«Сейчас квестов нет».
     }
-    return quest
-}
